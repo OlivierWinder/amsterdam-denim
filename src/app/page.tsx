@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { withBase } from "@/lib/base-path";
 
 export default function Home() {
   return (
     <main className="relative h-dvh w-full overflow-hidden bg-stone-900">
       <h1 className="sr-only">Atelier — bespoke denim, Amsterdam</h1>
       <video
-        src="/hero/P1090100.mp4"
+        src={withBase("/hero/P1090100.mp4")}
         muted
         autoPlay
         loop

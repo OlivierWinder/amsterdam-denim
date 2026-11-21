@@ -1,19 +1,23 @@
 "use client";
 
-import { useActionState } from "react";
+import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { submitInquiry, type InquiryState } from "@/lib/actions";
 
-const initialState: InquiryState = null;
-
 export function InquiryForm() {
-  const [state, formAction, pending] = useActionState(
-    submitInquiry,
-    initialState
-  );
+  const [state, setState] = useState<InquiryState>(null);
+  const [pending, setPending] = useState(false);
+
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setPending(true);
+    const next = await submitInquiry(state, new FormData(e.currentTarget));
+    setState(next);
+    setPending(false);
+  }
 
   if (state?.ok) {
     return (
@@ -27,7 +31,7 @@ export function InquiryForm() {
   }
 
   return (
-    <form action={formAction} className="mt-10 space-y-5">
+    <form onSubmit={onSubmit} className="mt-10 space-y-5">
       <div className="space-y-2">
         <Label htmlFor="name" className="font-serif text-[18px] font-normal">
           Name

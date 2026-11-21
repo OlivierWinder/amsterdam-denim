@@ -1,5 +1,3 @@
-"use server";
-
 export type InquiryState = {
   ok: boolean;
   error?: string;
