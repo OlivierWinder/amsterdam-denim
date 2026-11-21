@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { StyleImageCarousel } from "@/components/style-image-carousel";
+import { withBase } from "@/lib/base-path";
 import {
   bespokeJumps,
   bespokeParagraphs,
@@ -78,7 +79,7 @@ function BespokeOpener() {
       className="relative min-h-dvh scroll-mt-[var(--nav-h)]"
     >
       <Image
-        src="/home-bg.png"
+        src={withBase("/home-bg.png")}
         alt=""
         fill
         priority

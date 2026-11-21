@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { withBase } from "@/lib/base-path";
 import { ATELIER_RED, primaryNav } from "@/lib/nav";
 import { cn } from "@/lib/utils";
 
@@ -95,7 +96,7 @@ export function SiteNav() {
       >
         <Link href="/" className="shrink-0 transition-opacity hover:opacity-50">
           <Image
-            src="/logo.png"
+            src={withBase("/logo.png")}
             alt="Olivier Winder — Bespoke Jeans Amsterdam"
             width={1920}
             height={392}

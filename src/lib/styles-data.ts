@@ -1,3 +1,5 @@
+import { withBase } from "@/lib/base-path";
+
 export type StyleStill = {
   src: string;
   alt: string;
@@ -21,7 +23,7 @@ const catalog = (
   caption: string,
   alt = caption
 ): StyleStill => ({
-  src: `/catalog/${file}`,
+  src: withBase(`/catalog/${file}`),
   alt,
   caption,
   width: 1080,
